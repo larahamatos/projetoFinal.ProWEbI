@@ -1,8 +1,11 @@
 # 🎓 Colégio Técnico KNOW
 
+🔗 **Acesse o projeto online:**
+https://larahamatos.github.io/projetoFinal.ProWEbI/
+
 Um site institucional moderno e interativo desenvolvido para o **Colégio Técnico KNOW**, com foco na apresentação dos cursos, captação de alunos e experiência dinâmica para futuros estudantes.
 
-O projeto conta com um design responsivo, navegação SPA (Single Page Application), quiz vocacional inteligente, raspadinha premiada e sistema de pré-cadastro de alunos.  
+O projeto conta com um design responsivo, navegação SPA (Single Page Application), quiz vocacional inteligente, raspadinha premiada e sistema de pré-cadastro de alunos.
 
 ---
 
@@ -87,7 +90,13 @@ Características visuais:
 * Efeitos Glassmorphism
 * Navegação fluida sem recarregamento de página
 
+---
 
+## 🌐 Demonstração
+
+O projeto está hospedado no GitHub Pages e pode ser acessado pelo link abaixo:
+
+👉 **https://larahamatos.github.io/projetoFinal.ProWEbI/**
 
 ---
 
@@ -129,7 +138,7 @@ ou utilize a extensão **Live Server** no VS Code.
 
 ## 🎯 Objetivo do Projeto
 
-Este projeto foi desenvolvido com o objetivo de divulgar os cursos técnicos do Colégio Técnico KNOW, proporcionar uma experiência interativa aos visitantes e incentivar novas matrículas através de recursos digitais modernos. 
+Este projeto foi desenvolvido com o objetivo de divulgar os cursos técnicos do Colégio Técnico KNOW, proporcionar uma experiência interativa aos visitantes e incentivar novas matrículas através de recursos digitais modernos.
 
 ---
 
@@ -147,3 +156,4 @@ Projeto desenvolvido por:
 Este projeto foi desenvolvido para fins educacionais e acadêmicos.
 
 © 2026 Colégio Técnico KNOW. Todos os direitos reservados.
+
