@@ -267,29 +267,40 @@ function showResult() {
     }, 100);
 }
 
-// ===== RASPADINHA =====
-const prizes = [
-    { icon: '👕', name: 'Camiseta KNOW', subtitle: 'Camiseta exclusiva da escola', msg: '🎉 Você ganhou uma camiseta exclusiva do KNOW! Apresente este resultado na secretaria para retirar.' },
-    { icon: '🖊️', name: 'Kit de Canetas', subtitle: 'Kit escolar KNOW', msg: '✏️ Você ganhou um kit de canetas KNOW! Retire na secretaria da escola.' },
-    { icon: '💸', name: '10% de Desconto', subtitle: 'Na sua primeira mensalidade', msg: '💰 10% de desconto na primeira mensalidade! Informe o código SCRATCH10 ao fazer sua matrícula.' },
-    { icon: '🎫', name: 'Entrada Gratuita', subtitle: 'Em nosso próximo evento', msg: '🎫 Entrada gratuita no próximo evento KNOW! Apresente este resultado na entrada.' },
-    { icon: '📚', name: 'Material Didático', subtitle: 'Kit do 1º módulo grátis', msg: '📚 Material do 1º módulo grátis! Retire na secretaria ao fazer sua matrícula.' },
-    { icon: '☕', name: 'Cafeteria KNOW', subtitle: 'R$30 em créditos', msg: '☕ R$30 em créditos na cafeteria! Apresente este resultado no balcão.' }
+// ===== RASPADINHA LOTERIA =====
+const lotteryPrizes = [
+    { icon: '🎓', name: 'Bolsa 50%', desc: '50% de desconto na mensalidade', msg: '🎓 Incrível! Você ganhou 50% de bolsa na primeira mensalidade! Informe o código BOLSA50 ao fazer sua matrícula.', rare: true },
+    { icon: '👕', name: 'Camiseta', desc: 'Camiseta exclusiva KNOW', msg: '👕 Você ganhou uma camiseta exclusiva do KNOW! Retire na secretaria.', rare: false },
+    { icon: '💸', name: '10% OFF', desc: '10% na primeira mensalidade', msg: '💸 10% de desconto na primeira mensalidade! Use o código SCRATCH10 na matrícula.', rare: false },
+    { icon: '🎫', name: 'Evento', desc: 'Entrada gratuita no evento KNOW', msg: '🎫 Entrada gratuita no próximo evento KNOW! Apresente este resultado na entrada.', rare: false },
+    { icon: '📚', name: 'Material', desc: 'Kit do 1º módulo grátis', msg: '📚 Material do 1º módulo grátis! Retire na secretaria ao fazer sua matrícula.', rare: false },
+    { icon: '☕', name: 'Cafeteria', desc: 'R$30 na cafeteria', msg: '☕ R$30 em créditos na cafeteria KNOW! Apresente este resultado no balcão.', rare: false },
+    { icon: '🖊️', name: 'Kit Escolar', desc: 'Kit de canetas KNOW', msg: '✏️ Você ganhou um kit escolar KNOW! Retire na secretaria.', rare: false },
+    { icon: '⭐', name: 'Sorte', desc: 'Não foi desta vez...', msg: '😅 Quase lá! Tente novamente na próxima raspadinha.', rare: false },
+];
+
+// Winning combinations (indices in 3x3 grid)
+const WIN_LINES = [
+    [0,1,2],[3,4,5],[6,7,8],   // rows
+    [0,3,6],[1,4,7],[2,5,8],   // cols
+    [0,4,8],[2,4,6]            // diagonals
 ];
 
 const MAX_ATTEMPTS = 3;
 let scratchAttempts = 0;
-let currentPrize = null;
+let cellCanvases = [];
+let cellCtxs = [];
+let cellRevealed = [];
+let cellPrizes = [];
 let isScratching = false;
-let scratchRevealed = false;
-let scratchCtx = null;
+let activeCell = -1;
 let lastPos = null;
+let lotteryDone = false;
 
 function getScratchData() {
     const raw = localStorage.getItem('know_scratch');
     return raw ? JSON.parse(raw) : { count: 0, prizes: [] };
 }
-
 function saveScratchData(data) {
     localStorage.setItem('know_scratch', JSON.stringify(data));
 }
@@ -302,17 +313,23 @@ function initScratch() {
     if (scratchAttempts >= MAX_ATTEMPTS) {
         document.getElementById('scratchArea').style.display = 'none';
         document.getElementById('noAttemptsMsg').style.display = 'block';
-        document.getElementById('scratchMsg').classList.remove('visible');
+        document.getElementById('lotteryResult').style.display = 'none';
+        document.getElementById('newScratchBtn').style.display = 'none';
+        document.getElementById('scratchCadBtn').style.display = 'none';
         return;
     }
 
     document.getElementById('noAttemptsMsg').style.display = 'none';
     document.getElementById('scratchArea').style.display = 'block';
-    setupNewCard();
+    document.getElementById('lotteryResult').style.display = 'none';
+    document.getElementById('newScratchBtn').style.display = 'none';
+    document.getElementById('scratchCadBtn').style.display = 'none';
+    buildLotteryTicket();
 }
 
 function renderAttemptDots() {
     const wrap = document.getElementById('attemptsDots');
+    if (!wrap) return;
     wrap.innerHTML = '';
     for (let i = 0; i < MAX_ATTEMPTS; i++) {
         const dot = document.createElement('div');
@@ -321,117 +338,274 @@ function renderAttemptDots() {
     }
 }
 
-function setupNewCard() {
-    currentPrize = prizes[Math.floor(Math.random() * prizes.length)];
-    document.getElementById('prizeIcon').textContent = currentPrize.icon;
-    document.getElementById('prizeName').textContent = currentPrize.name;
-    document.getElementById('prizeSubtitle').textContent = currentPrize.subtitle;
-    document.getElementById('scratchMsg').classList.remove('visible');
-    document.getElementById('newScratchBtn').style.display = 'none';
-    document.getElementById('scratchCadBtn').style.display = 'none';
-    scratchRevealed = false;
+function buildLotteryTicket() {
+    // Random serial
+    const serial = 'Nº ' + String(Math.floor(Math.random() * 999999)).padStart(6, '0');
+    document.getElementById('ticketSerial').textContent = serial;
 
-    const canvas = document.getElementById('scratchCanvas');
-    scratchCtx = canvas.getContext('2d');
-    scratchCtx.clearRect(0, 0, canvas.width, canvas.height);
+    // Generate 9 cell prizes — ensure at least one win line occasionally
+    cellPrizes = generateCellPrizes();
+    cellRevealed = Array(9).fill(false);
+    lotteryDone = false;
 
-    // Silver scratch layer
-    const grad = scratchCtx.createLinearGradient(0, 0, canvas.width, canvas.height);
-    grad.addColorStop(0, '#8B2FC9');
-    grad.addColorStop(0.3, '#A040D0');
-    grad.addColorStop(0.6, '#7A1AB8');
-    grad.addColorStop(1, '#6B0FA8');
-    scratchCtx.fillStyle = grad;
-    scratchCtx.fillRect(0, 0, canvas.width, canvas.height);
+    // Build legend
+    const legendEl = document.getElementById('legendItems');
+    legendEl.innerHTML = lotteryPrizes.filter(p => !p.rare || p.rare).slice(0, 6).map(p => `
+        <div class="legend-item">
+            <span class="li-icon">${p.icon}</span>
+            <span class="li-name">${p.name}</span>
+        </div>`).join('');
 
-    // Texture dots
-    scratchCtx.fillStyle = 'rgba(255,255,255,0.06)';
-    for (let i = 0; i < 200; i++) {
-        scratchCtx.beginPath();
-        scratchCtx.arc(Math.random() * 340, Math.random() * 220, Math.random() * 4 + 1, 0, Math.PI * 2);
-        scratchCtx.fill();
+    // Max prize hint
+    document.getElementById('ticketPrizeHint').textContent = 'PRÊMIO MÁX: ' + lotteryPrizes[0].name.toUpperCase();
+
+    // Build grid cells
+    const grid = document.getElementById('scratchGrid');
+    grid.innerHTML = '';
+    cellCanvases = [];
+    cellCtxs = [];
+
+    cellPrizes.forEach((prize, i) => {
+        const cell = document.createElement('div');
+        cell.className = 'scratch-cell';
+        cell.id = 'cell-' + i;
+
+        // Prize reveal layer
+        cell.innerHTML = `
+            <div class="scratch-cell-prize">
+                <span class="cell-icon">${prize.icon}</span>
+                <span class="cell-label">${prize.name}</span>
+            </div>`;
+
+        // Canvas overlay
+        const canvas = document.createElement('canvas');
+        canvas.style.cssText = 'display:block; position:absolute; inset:0; width:100%; height:100%; touch-action:none;';
+        cell.appendChild(canvas);
+        grid.appendChild(cell);
+
+        cellCanvases.push(canvas);
+        cellCtxs.push(null); // init lazily after layout
+
+        // Events
+        cell.addEventListener('mousedown', (e) => { e.preventDefault(); startCellScratch(i, e); });
+        cell.addEventListener('mousemove', (e) => { e.preventDefault(); doCellScratch(i, e); });
+        cell.addEventListener('mouseup', endCellScratch);
+        cell.addEventListener('mouseleave', endCellScratch);
+        cell.addEventListener('touchstart', (e) => { e.preventDefault(); startCellScratchTouch(i, e); }, { passive: false });
+        cell.addEventListener('touchmove', (e) => { e.preventDefault(); doCellScratchTouch(i, e); }, { passive: false });
+        cell.addEventListener('touchend', endCellScratch);
+    });
+
+    // Init canvases after layout
+    requestAnimationFrame(() => {
+        cellCanvases.forEach((canvas, i) => {
+            const rect = canvas.parentElement.getBoundingClientRect();
+            const w = Math.round(rect.width) || 100;
+            const h = Math.round(rect.height) || 100;
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext('2d');
+            cellCtxs[i] = ctx;
+            drawCellOverlay(ctx, w, h, i);
+        });
+    });
+}
+
+function generateCellPrizes() {
+    // Pick 6 non-rare prizes for the pool
+    const pool = lotteryPrizes.filter(p => p.name !== 'Sorte');
+    const result = [];
+
+    // ~30% chance of a winning line
+    const hasWin = Math.random() < 0.3;
+    if (hasWin) {
+        const winLine = WIN_LINES[Math.floor(Math.random() * WIN_LINES.length)];
+        const winPrize = pool[Math.floor(Math.random() * (pool.length - 1)) + 1]; // avoid rare bolsa
+        for (let i = 0; i < 9; i++) result.push(null);
+        winLine.forEach(idx => result[idx] = winPrize);
+        // Fill rest with varied prizes
+        for (let i = 0; i < 9; i++) {
+            if (!result[i]) result[i] = pool[Math.floor(Math.random() * pool.length)];
+        }
+    } else {
+        // No win — make sure no 3 match on any line
+        let attempts = 0;
+        do {
+            for (let i = 0; i < 9; i++) result[i] = pool[Math.floor(Math.random() * pool.length)];
+            attempts++;
+        } while (attempts < 20 && checkForWin(result) !== null);
+    }
+    return result;
+}
+
+function drawCellOverlay(ctx, w, h, index) {
+    // Background gradient — lottery silver/purple
+    const colors = [
+        ['#8B2FC9','#6B0FA8'],['#9B3FD9','#7A1AB8'],['#7A1AB8','#5A0088'],
+        ['#6B0FA8','#4A0076'],['#A040D0','#8020B0'],['#5A0088','#3D0066'],
+        ['#8B2FC9','#7A1AB8'],['#7020B0','#5A0090'],['#9B3FD9','#6B0FA8']
+    ];
+    const [c1,c2] = colors[index % colors.length];
+    const grad = ctx.createLinearGradient(0, 0, w, h);
+    grad.addColorStop(0, c1);
+    grad.addColorStop(1, c2);
+    ctx.fillStyle = grad;
+    ctx.roundRect ? ctx.roundRect(0, 0, w, h, 8) : ctx.fillRect(0, 0, w, h);
+    ctx.fill();
+
+    // Shimmer dots
+    ctx.fillStyle = 'rgba(255,255,255,0.07)';
+    for (let i = 0; i < 30; i++) {
+        ctx.beginPath();
+        ctx.arc(Math.random()*w, Math.random()*h, Math.random()*3+1, 0, Math.PI*2);
+        ctx.fill();
     }
 
-    // Instruction text
-    scratchCtx.fillStyle = 'rgba(255,255,255,0.5)';
-    scratchCtx.font = 'bold 22px Space Grotesk, sans-serif';
-    scratchCtx.textAlign = 'center';
-    scratchCtx.fillText('✦ RASPE AQUI ✦', 170, 95);
-    scratchCtx.font = '14px DM Sans, sans-serif';
-    scratchCtx.fillStyle = 'rgba(255,255,255,0.35)';
-    scratchCtx.fillText('Use o mouse ou o dedo', 170, 125);
-    scratchCtx.fillText('para raspar a área', 170, 145);
+    // Star pattern
+    ctx.fillStyle = 'rgba(200,255,0,0.12)';
+    ctx.font = `${Math.min(w,h)*0.35}px serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('★', w/2, h/2);
 
-    scratchCtx.globalCompositeOperation = 'source-over';
-
-    const wrap = document.getElementById('scratchWrap');
-    wrap.onmousedown = startScratch;
-    wrap.onmousemove = doScratch;
-    wrap.onmouseup = endScratch;
-    wrap.onmouseleave = endScratch;
-    wrap.ontouchstart = startScratchTouch;
-    wrap.ontouchmove = doScratchTouch;
-    wrap.ontouchend = endScratch;
+    // "RASPE" text
+    ctx.fillStyle = 'rgba(255,255,255,0.45)';
+    ctx.font = `bold ${Math.min(w,h)*0.14}px Space Grotesk, sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('RASPE', w/2, h*0.7);
 }
 
-function getPos(e) {
-    const rect = document.getElementById('scratchCanvas').getBoundingClientRect();
-    return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+function getCellPos(e, canvas) {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    return {
+        x: (e.clientX - rect.left) * scaleX,
+        y: (e.clientY - rect.top) * scaleY
+    };
 }
 
-function startScratch(e) { isScratching = true; lastPos = getPos(e); }
-function startScratchTouch(e) { e.preventDefault(); isScratching = true; const t = e.touches[0]; const rect = document.getElementById('scratchCanvas').getBoundingClientRect(); lastPos = { x: t.clientX - rect.left, y: t.clientY - rect.top }; }
-function doScratchTouch(e) { e.preventDefault(); if (!isScratching) return; const t = e.touches[0]; const rect = document.getElementById('scratchCanvas').getBoundingClientRect(); scratchAt({ x: t.clientX - rect.left, y: t.clientY - rect.top }); }
+function startCellScratch(i, e) {
+    if (cellRevealed[i] || lotteryDone) return;
+    isScratching = true;
+    activeCell = i;
+    lastPos = getCellPos(e, cellCanvases[i]);
+}
+function startCellScratchTouch(i, e) {
+    if (cellRevealed[i] || lotteryDone) return;
+    isScratching = true;
+    activeCell = i;
+    const t = e.touches[0];
+    const rect = cellCanvases[i].getBoundingClientRect();
+    const scaleX = cellCanvases[i].width / rect.width;
+    const scaleY = cellCanvases[i].height / rect.height;
+    lastPos = { x: (t.clientX - rect.left) * scaleX, y: (t.clientY - rect.top) * scaleY };
+}
+function doCellScratch(i, e) {
+    if (!isScratching || activeCell !== i) return;
+    const pos = getCellPos(e, cellCanvases[i]);
+    scratchCellAt(i, pos);
+}
+function doCellScratchTouch(i, e) {
+    if (!isScratching || activeCell !== i) return;
+    const t = e.touches[0];
+    const rect = cellCanvases[i].getBoundingClientRect();
+    const scaleX = cellCanvases[i].width / rect.width;
+    const scaleY = cellCanvases[i].height / rect.height;
+    scratchCellAt(i, { x: (t.clientX - rect.left) * scaleX, y: (t.clientY - rect.top) * scaleY });
+}
+function endCellScratch() {
+    isScratching = false;
+    lastPos = null;
+}
 
-function doScratch(e) { if (!isScratching) return; scratchAt(getPos(e)); }
-
-function scratchAt(pos) {
-    if (!scratchCtx || scratchRevealed) return;
-    scratchCtx.globalCompositeOperation = 'destination-out';
-    scratchCtx.beginPath();
-    scratchCtx.arc(pos.x, pos.y, 28, 0, Math.PI * 2);
-    scratchCtx.fill();
+function scratchCellAt(i, pos) {
+    const ctx = cellCtxs[i];
+    if (!ctx || cellRevealed[i]) return;
+    ctx.globalCompositeOperation = 'destination-out';
+    const r = cellCanvases[i].width * 0.18;
+    ctx.beginPath();
+    ctx.arc(pos.x, pos.y, r, 0, Math.PI*2);
+    ctx.fill();
     if (lastPos) {
-        scratchCtx.lineWidth = 56;
-        scratchCtx.lineCap = 'round';
-        scratchCtx.beginPath();
-        scratchCtx.moveTo(lastPos.x, lastPos.y);
-        scratchCtx.lineTo(pos.x, pos.y);
-        scratchCtx.stroke();
+        ctx.lineWidth = r * 2;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(lastPos.x, lastPos.y);
+        ctx.lineTo(pos.x, pos.y);
+        ctx.stroke();
     }
     lastPos = pos;
-    checkReveal();
+    checkCellReveal(i);
 }
 
-function endScratch() { isScratching = false; lastPos = null; }
-
-function checkReveal() {
-    const canvas = document.getElementById('scratchCanvas');
-    const imgData = scratchCtx.getImageData(0, 0, canvas.width, canvas.height);
+function checkCellReveal(i) {
+    const canvas = cellCanvases[i];
+    const ctx = cellCtxs[i];
+    const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
     let transparent = 0;
-    for (let i = 3; i < imgData.data.length; i += 4) {
-        if (imgData.data[i] < 128) transparent++;
-    }
+    for (let j = 3; j < data.length; j += 4) if (data[j] < 128) transparent++;
     const ratio = transparent / (canvas.width * canvas.height);
-    if (ratio > 0.55 && !scratchRevealed) revealPrize();
+    if (ratio > 0.5 && !cellRevealed[i]) {
+        cellRevealed[i] = true;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        document.getElementById('cell-'+i).classList.add('revealed');
+
+        // Check if all revealed
+        if (cellRevealed.every(Boolean)) finalizeLottery();
+    }
 }
 
-function revealPrize() {
-    scratchRevealed = true;
-    const canvas = document.getElementById('scratchCanvas');
-    scratchCtx.clearRect(0, 0, canvas.width, canvas.height);
+function checkForWin(prizes) {
+    for (const line of WIN_LINES) {
+        const [a,b,c] = line;
+        if (prizes[a] && prizes[b] && prizes[c] &&
+            prizes[a].name === prizes[b].name &&
+            prizes[b].name === prizes[c].name) {
+            return { line, prize: prizes[a] };
+        }
+    }
+    return null;
+}
 
+function finalizeLottery() {
+    if (lotteryDone) return;
+    lotteryDone = true;
+
+    const win = checkForWin(cellPrizes);
+
+    // Save attempt
     const data = getScratchData();
     data.count++;
-    data.prizes.push(currentPrize.name);
+    data.prizes.push(win ? win.prize.name : 'Sem prêmio');
     saveScratchData(data);
     scratchAttempts = data.count;
     renderAttemptDots();
 
-    const msg = document.getElementById('scratchMsg');
-    document.getElementById('scratchMsgTitle').textContent = `${currentPrize.icon} ${currentPrize.name}`;
-    document.getElementById('scratchMsgText').textContent = currentPrize.msg;
-    msg.classList.add('visible');
+    if (win) {
+        // Highlight winning cells
+        win.line.forEach(idx => {
+            document.getElementById('cell-'+idx).classList.add('winner-cell');
+        });
+
+        // Confetti
+        launchConfetti();
+
+        const resultEl = document.getElementById('lotteryResult');
+        document.getElementById('lotteryResultIcon').textContent = win.prize.icon;
+        document.getElementById('lotteryResultTitle').textContent = '🎉 VOCÊ GANHOU!';
+        document.getElementById('lotteryResultMsg').textContent = win.prize.msg;
+        resultEl.style.display = 'block';
+        showToast('🎉 Você ganhou: ' + win.prize.name + '!');
+    } else {
+        const resultEl = document.getElementById('lotteryResult');
+        document.getElementById('lotteryResultIcon').textContent = '😅';
+        document.getElementById('lotteryResultTitle').textContent = 'Não foi desta vez!';
+        document.getElementById('lotteryResultMsg').textContent = 'Tente novamente — você pode ter mais sorte na próxima raspadinha!';
+        resultEl.style.display = 'block';
+        showToast('Sem combinação desta vez. Tente de novo!');
+    }
 
     document.getElementById('scratchCadBtn').style.display = '';
     if (scratchAttempts < MAX_ATTEMPTS) {
@@ -440,21 +614,39 @@ function revealPrize() {
         setTimeout(() => {
             document.getElementById('scratchArea').style.display = 'none';
             document.getElementById('noAttemptsMsg').style.display = 'block';
-        }, 3500);
+        }, 4000);
     }
+}
 
-    showToast(`🎉 Você ganhou: ${currentPrize.name}!`);
-
-    // Celebrate animation
-    const prizeBg = document.getElementById('prizeBg');
-    prizeBg.style.animation = 'none';
-    prizeBg.style.transform = 'scale(1.04)';
-    setTimeout(() => prizeBg.style.transform = '', 400);
+function launchConfetti() {
+    const container = document.getElementById('ticketConfetti');
+    if (!container) return;
+    container.style.display = 'block';
+    container.innerHTML = '';
+    const colors = ['#C8FF00','#FFE000','#B66EF0','#FF3CAC','#fff','#6B0FA8'];
+    for (let i = 0; i < 50; i++) {
+        const piece = document.createElement('div');
+        piece.className = 'confetti-piece';
+        piece.style.cssText = `
+            left: ${Math.random()*100}%;
+            top: ${-10 + Math.random()*30}px;
+            background: ${colors[Math.floor(Math.random()*colors.length)]};
+            width: ${5 + Math.random()*8}px;
+            height: ${5 + Math.random()*8}px;
+            animation-duration: ${0.8 + Math.random()*1.2}s;
+            animation-delay: ${Math.random()*0.5}s;
+        `;
+        container.appendChild(piece);
+    }
+    setTimeout(() => { container.style.display = 'none'; container.innerHTML = ''; }, 2500);
 }
 
 function newScratch() {
     if (scratchAttempts >= MAX_ATTEMPTS) { showToast('Suas tentativas acabaram!'); return; }
-    setupNewCard();
+    document.getElementById('lotteryResult').style.display = 'none';
+    document.getElementById('newScratchBtn').style.display = 'none';
+    document.getElementById('scratchCadBtn').style.display = 'none';
+    buildLotteryTicket();
 }
 
 // ===== CADASTRO =====
