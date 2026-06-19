@@ -1744,3 +1744,9 @@ footer {
     flex: 1;
     justify-content: center;
 }
+
+.logo img {
+    height: 60px;
+    width: auto;
+    cursor: pointer;
+}

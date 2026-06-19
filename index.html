@@ -1,635 +1,710 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Colégio Técnico KNOW</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colégio Técnico KNOW</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<!-- ===== NAVBAR ===== -->
-<nav>
-  <div class="logo" onclick="showPage('home')">
-    <div class="logo-mark">K</div>
-    <div class="logo-text">KNOW<span>.</span></div>
-  </div>
-  <ul class="nav-links" id="navLinks">
-    <li><a onclick="showPage('home')" id="nav-home" class="active">Início</a></li>
-    <li><a onclick="showPage('sobre')" id="nav-sobre">Sobre</a></li>
-    <li><a onclick="showPage('cursos')" id="nav-cursos">Cursos</a></li>
-    <li><a onclick="showPage('quiz')" id="nav-quiz">Quiz Vocacional</a></li>
-    <li><a onclick="showPage('raspadinha')" id="nav-raspadinha">Raspadinha</a></li>
-    <li><a onclick="showPage('cadastro')" id="nav-cadastro">Cadastro</a></li>
-    <li><a onclick="showPage('cadastro')" class="nav-cta">Inscreva-se</a></li>
-  </ul>
-</nav>
-
-<!-- ===== HOME ===== -->
-<div id="page-home" class="page active">
-
-  <section class="hero">
-    <div class="hero-grid">
-      <div>
-        <div class="hero-eyebrow">Educação que transforma</div>
-        <h1>Seu futuro começa aqui, no <span class="highlight">KNOW.</span></h1>
-        <p class="hero-lead">Formação técnica de qualidade nas áreas de Informática, Enfermagem e Administração. Prepare-se para o mercado com quem entende do assunto.</p>
-        <div class="hero-actions">
-          <button class="btn-primary" onclick="showPage('cursos')">Conhecer os cursos →</button>
-          <button class="btn-secondary" onclick="showPage('quiz')">🎯 Fazer o Quiz Vocacional</button>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="stat-cards">
-          <div class="stat-card">
-            <div class="stat-number">+2.4k</div>
-            <div class="stat-label">Alunos formados</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">3</div>
-            <div class="stat-label">Cursos técnicos</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">94%</div>
-            <div class="stat-label">Empregabilidade</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">15+</div>
-            <div class="stat-label">Anos de história</div>
-          </div>
-        </div>
-        <div class="hero-badge">
-          <div class="badge-icon">🏆</div>
-          <div class="badge-text">
-            <strong>MEC 5 estrelas</strong>
-            <span>Melhor colégio técnico da região pelo 3º ano consecutivo</span>
-          </div>
-        </div>
-      </div>
+  <!-- ===== NAVBAR ===== -->
+  <nav>
+    <div class="logo" onclick="showPage('home')">
+      <img src="./logo2.png" alt="Logo KNOW">
     </div>
-  </section>
+    <ul class="nav-links" id="navLinks">
+      <li><a onclick="showPage('home')" id="nav-home" class="active">Início</a></li>
+      <li><a onclick="showPage('sobre')" id="nav-sobre">Sobre</a></li>
+      <li><a onclick="showPage('cursos')" id="nav-cursos">Cursos</a></li>
+      <li><a onclick="showPage('quiz')" id="nav-quiz">Quiz Vocacional</a></li>
+      <li><a onclick="showPage('raspadinha')" id="nav-raspadinha">Raspadinha</a></li>
+      <li><a onclick="showPage('cadastro')" id="nav-cadastro">Cadastro</a></li>
+      <li><a onclick="showPage('cadastro')" class="nav-cta">Inscreva-se</a></li>
+    </ul>
+  </nav>
 
-  <!-- Cursos preview -->
-  <section class="section">
-    <div class="container">
-      <div class="section-label">Nossos Cursos</div>
-      <h2>O que você quer ser?</h2>
-      <p class="section-lead">Três áreas em alta no mercado. Todas com formação completa, estágio supervisionado e certificado reconhecido.</p>
-      <div class="courses-grid">
-        <div class="course-card" onclick="showPage('cursos')">
-          <div class="course-card-header">
-            <span class="course-icon">💻</span>
-            <div class="course-name">Informática</div>
-            <div class="course-tag">Tecnologia</div>
-          </div>
-          <div class="course-card-body">
-            <p class="course-desc">Desenvolvimento web, redes, banco de dados e sistemas operacionais. Entre no mercado de TI com base sólida.</p>
-            <a class="course-link" onclick="showPage('cursos')">Ver detalhes →</a>
-          </div>
-        </div>
-        <div class="course-card" onclick="showPage('cursos')">
-          <div class="course-card-header" style="background: linear-gradient(135deg, #5A0066, #A020C8)">
-            <span class="course-icon">🏥</span>
-            <div class="course-name">Enfermagem</div>
-            <div class="course-tag">Saúde</div>
-          </div>
-          <div class="course-card-body">
-            <p class="course-desc">Cuidados clínicos, primeiros socorros, anatomia e ética profissional. Prepare-se para salvar vidas.</p>
-            <a class="course-link" onclick="showPage('cursos')">Ver detalhes →</a>
-          </div>
-        </div>
-        <div class="course-card" onclick="showPage('cursos')">
-          <div class="course-card-header" style="background: linear-gradient(135deg, #2D0066, #7810B8)">
-            <span class="course-icon">📊</span>
-            <div class="course-name">Administração</div>
-            <div class="course-tag">Negócios</div>
-          </div>
-          <div class="course-card-body">
-            <p class="course-desc">Gestão financeira, RH, marketing e empreendedorismo. Forme-se para liderar qualquer negócio.</p>
-            <a class="course-link" onclick="showPage('cursos')">Ver detalhes →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- ===== HOME ===== -->
+  <div id="page-home" class="page active">
 
-  <!-- Projetos / Ferramentas -->
-  <section class="section section-dark">
-    <div class="container">
-      <div class="section-label" style="color: var(--purple-glow)">Ferramentas Interativas</div>
-      <h2>Explore, descubra, participe</h2>
-      <p class="section-lead">Recursos exclusivos para ajudar você a encontrar o curso certo e dar o primeiro passo.</p>
-      <div class="projects-grid">
-        <div class="proj-card">
-          <div class="proj-number">01</div>
-          <span class="proj-icon">🎯</span>
-          <div class="proj-title">Quiz Vocacional</div>
-          <p class="proj-desc">Responda 15 perguntas e descubra qual curso técnico combina com seu perfil, habilidades e sonhos.</p>
-          <button class="proj-btn" onclick="showPage('quiz')">Fazer o Quiz</button>
-        </div>
-        <div class="proj-card">
-          <div class="proj-number">02</div>
-          <span class="proj-icon">🎰</span>
-          <div class="proj-title">Raspadinha da KNOW</div>
-          <p class="proj-desc">Tente a sorte e ganhe prêmios exclusivos: camiseta, descontos na matrícula e muito mais.</p>
-          <button class="proj-btn" onclick="showPage('raspadinha')">Raspar agora</button>
-        </div>
-        <div class="proj-card">
-          <div class="proj-number">03</div>
-          <span class="proj-icon">📋</span>
-          <div class="proj-title">Pré-cadastro</div>
-          <p class="proj-desc">Reserve sua vaga! Preencha seus dados e garanta seu lugar na próxima turma do KNOW.</p>
-          <button class="proj-btn" onclick="showPage('cadastro')">Cadastrar-se</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="section">
-    <div class="container">
-      <div class="cta-banner">
-        <h2>Pronto para começar?</h2>
-        <p>As inscrições para as próximas turmas estão abertas. Garanta sua vaga e transforme seu futuro com o Colégio Técnico KNOW.</p>
-        <button class="btn-primary" onclick="showPage('cadastro')">Fazer minha inscrição →</button>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo"><div class="logo-mark">K</div><div class="logo-text">KNOW<span>.</span></div></div>
-        <p>Formando profissionais técnicos de excelência desde 2009. Educação que transforma vidas e carreiras.</p>
-      </div>
-      <div class="footer-col">
-        <h5>Navegação</h5>
-        <ul>
-          <li><a onclick="showPage('home')">Início</a></li>
-          <li><a onclick="showPage('sobre')">Sobre</a></li>
-          <li><a onclick="showPage('cursos')">Cursos</a></li>
-          <li><a onclick="showPage('cadastro')">Inscrição</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Cursos</h5>
-        <ul>
-          <li><a onclick="showPage('cursos')">Informática</a></li>
-          <li><a onclick="showPage('cursos')">Enfermagem</a></li>
-          <li><a onclick="showPage('cursos')">Administração</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Contato</h5>
-        <ul>
-          <li><span>📍 Rua das Acácias, 480</span></li>
-          <li><span>📞 (51) 3344-5566</span></li>
-          <li><span>✉️ contato@knowtecnico.edu.br</span></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2024 Colégio Técnico <span>KNOW.</span> Todos os direitos reservados.</span>
-      <span>Educação que transforma 🚀</span>
-    </div>
-  </footer>
-
-</div>
-
-<!-- ===== SOBRE ===== -->
-<div id="page-sobre" class="page">
-
-  <section class="section" style="background: linear-gradient(135deg, var(--dark), var(--purple-deep)); min-height: 320px; display:flex; align-items:center;">
-    <div class="container">
-      <div class="section-label" style="color: var(--purple-glow)">Nossa história</div>
-      <h2 style="color: var(--white); max-width: 640px;">15 anos transformando jovens em profissionais</h2>
-      <p style="color: var(--gray-300); max-width: 520px; line-height: 1.7; font-weight: 300; margin-top: 1rem;">O Colégio Técnico KNOW nasceu da crença de que a educação técnica de qualidade é o caminho mais direto para o crescimento profissional e social.</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="about-intro">
+    <section class="hero">
+      <div class="hero-grid">
         <div>
-          <div class="section-label">Linha do Tempo</div>
-          <h2>Como chegamos até aqui</h2>
-          <div class="timeline mt-2">
-            <div class="timeline-item">
-              <div class="timeline-year">2009</div>
-              <h4>Fundação do KNOW</h4>
-              <p>Inauguração com o curso de Informática e 40 alunos na primeira turma. Uma semente plantada na educação técnica regional.</p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-year">2012</div>
-              <h4>Expansão para Saúde</h4>
-              <p>Abertura do curso técnico em Enfermagem, atendendo à crescente demanda por profissionais de saúde na região.</p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-year">2015</div>
-              <h4>Curso de Administração</h4>
-              <p>Completando a tríade formativa, o curso de Administração abriu portas para empreendedores e gestores em formação.</p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-year">2018</div>
-              <h4>Acreditação MEC 5 Estrelas</h4>
-              <p>Reconhecimento nacional pela excelência em ensino técnico, infraestrutura e taxa de empregabilidade de egressos.</p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-year">2024</div>
-              <h4>+2.400 formados</h4>
-              <p>Mais de dois mil e quatrocentos profissionais no mercado, atuando em empresas de referência em todo o Brasil.</p>
-            </div>
+          <div class="hero-eyebrow">Educação que transforma</div>
+          <h1>Seu futuro começa aqui, no <span class="highlight">KNOW.</span></h1>
+          <p class="hero-lead">Formação técnica de qualidade nas áreas de Informática, Enfermagem e Administração.
+            Prepare-se para o mercado com quem entende do assunto.</p>
+          <div class="hero-actions">
+            <button class="btn-primary" data-page="cursos">Conhecer os cursos →</button>
+            <button class="btn-secondary" data-page="quiz">🎯 Fazer o Quiz Vocacional</button>
           </div>
         </div>
-        <div>
-          <div class="mission-vision">
-            <div class="mv-card">
-              <h3>🎯 Missão</h3>
-              <p>Oferecer educação técnica de excelência, formando profissionais éticos, competentes e preparados para os desafios do mercado de trabalho moderno.</p>
+        <div class="hero-visual">
+          <div class="stat-cards">
+            <div class="stat-card">
+              <div class="stat-number">+2.4k</div>
+              <div class="stat-label">Alunos formados</div>
             </div>
-            <div class="mv-card">
-              <h3>🔭 Visão</h3>
-              <p>Ser referência nacional em educação técnica, reconhecida pela qualidade do ensino, inovação pedagógica e impacto positivo na vida dos alunos.</p>
+            <div class="stat-card">
+              <div class="stat-number">3</div>
+              <div class="stat-label">Cursos técnicos</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">94%</div>
+              <div class="stat-label">Empregabilidade</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">15+</div>
+              <div class="stat-label">Anos de história</div>
             </div>
           </div>
-          <div style="margin-top: 2rem; background: var(--gray-100); border-radius: var(--radius); padding: 2rem;">
-            <div class="section-label" style="margin-bottom: 1rem">Em números</div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-              <div><div style="font-family:var(--font-display); font-size:2rem; font-weight:700; color:var(--purple-main)">2.400+</div><div style="font-size:0.82rem; color:var(--gray-500)">Alunos formados</div></div>
-              <div><div style="font-family:var(--font-display); font-size:2rem; font-weight:700; color:var(--purple-main)">94%</div><div style="font-size:0.82rem; color:var(--gray-500)">Empregabilidade</div></div>
-              <div><div style="font-family:var(--font-display); font-size:2rem; font-weight:700; color:var(--purple-main)">45</div><div style="font-size:0.82rem; color:var(--gray-500)">Professores especializados</div></div>
-              <div><div style="font-family:var(--font-display); font-size:2rem; font-weight:700; color:var(--purple-main)">12</div><div style="font-size:0.82rem; color:var(--gray-500)">Laboratórios equipados</div></div>
+          <div class="hero-badge">
+            <div class="badge-icon">🏆</div>
+            <div class="badge-text">
+              <strong>MEC 5 estrelas</strong>
+              <span>Melhor colégio técnico da região pelo 3º ano consecutivo</span>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section section-alt">
-    <div class="container">
-      <div class="section-label">Valores</div>
-      <h2>O que nos guia</h2>
-      <p class="section-lead">Mais do que uma instituição de ensino, somos uma comunidade comprometida com valores que fazem a diferença.</p>
-      <div class="values-grid">
-        <div class="value-card">
-          <span class="value-icon">🎓</span>
-          <h4>Excelência</h4>
-          <p>Buscamos o mais alto padrão de qualidade em tudo que fazemos: no ensino, na infraestrutura e no atendimento ao aluno.</p>
-        </div>
-        <div class="value-card">
-          <span class="value-icon">🤝</span>
-          <h4>Inclusão</h4>
-          <p>Acreditamos que a educação técnica de qualidade deve ser acessível a todos, independente de origem ou condição social.</p>
-        </div>
-        <div class="value-card">
-          <span class="value-icon">💡</span>
-          <h4>Inovação</h4>
-          <p>Acompanhamos as transformações do mercado e atualizamos continuamente nossos currículos e metodologias.</p>
-        </div>
-        <div class="value-card">
-          <span class="value-icon">🌱</span>
-          <h4>Desenvolvimento</h4>
-          <p>Não formamos apenas técnicos: desenvolvemos pessoas completas, com pensamento crítico e visão de futuro.</p>
-        </div>
-        <div class="value-card">
-          <span class="value-icon">🔗</span>
-          <h4>Parceria</h4>
-          <p>Construímos pontes entre alunos e empresas, facilitando o acesso ao primeiro emprego e às melhores oportunidades.</p>
-        </div>
-        <div class="value-card">
-          <span class="value-icon">⚖️</span>
-          <h4>Ética</h4>
-          <p>A conduta ética e a responsabilidade profissional são pilares fundamentais de todos os nossos cursos e relações.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="cta-banner">
-        <h2>Faça parte dessa história</h2>
-        <p>Junte-se a mais de 2.400 profissionais que já transformaram suas vidas com o Colégio Técnico KNOW.</p>
-        <button class="btn-primary" onclick="showPage('cadastro')">Quero me inscrever →</button>
-      </div>
-    </div>
-  </section>
-
-</div>
-
-<!-- ===== CURSOS ===== -->
-<div id="page-cursos" class="page">
-
-  <section class="section" style="background: linear-gradient(135deg, var(--dark), var(--purple-deep)); min-height: 260px; display:flex; align-items:center; padding-bottom: 3rem;">
-    <div class="container">
-      <div class="section-label" style="color: var(--purple-glow)">Formação Técnica</div>
-      <h2 style="color: var(--white);">Nossos cursos</h2>
-      <p style="color: var(--gray-300); font-weight:300; line-height:1.7; max-width:540px; margin-top: 1rem;">Escolha sua área e dê o primeiro passo rumo a uma carreira sólida, bem remunerada e cheia de oportunidades.</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-
-      <div class="course-detail">
-        <div class="course-detail-header">
-          <div class="course-detail-icon">💻</div>
-          <div>
-            <h3>Técnico em Informática</h3>
-            <p>Domine as tecnologias que movem o mundo. De redes a programação, você estará preparado para atuar em qualquer área do setor de TI.</p>
+    <!-- Cursos preview -->
+    <section class="section">
+      <div class="container">
+        <div class="section-label">Nossos Cursos</div>
+        <h2>O que você quer ser?</h2>
+        <p class="section-lead">Três áreas em alta no mercado. Todas com formação completa, estágio supervisionado e
+          certificado reconhecido.</p>
+        <div class="courses-grid">
+          <div class="course-card" onclick="showPage('cursos')">
+            <div class="course-card-header">
+              <span class="course-icon">💻</span>
+              <div class="course-name">Informática</div>
+              <div class="course-tag">Tecnologia</div>
+            </div>
+            <div class="course-card-body">
+              <p class="course-desc">Desenvolvimento web, redes, banco de dados e sistemas operacionais. Entre no
+                mercado de TI com base sólida.</p>
+              <a class="course-link" onclick="showPage('cursos')">Ver detalhes →</a>
+            </div>
           </div>
-        </div>
-        <div class="course-detail-body">
-          <div class="course-modules">
-            <h4>Módulos do Curso</h4>
-            <ul class="module-list">
-              <li>Introdução à Lógica de Programação</li>
-              <li>Algoritmos e Estrutura de Dados</li>
-              <li>HTML, CSS e JavaScript</li>
-              <li>Banco de Dados e SQL</li>
-              <li>Redes de Computadores</li>
-              <li>Sistemas Operacionais (Windows e Linux)</li>
-              <li>Manutenção de Hardware e Software</li>
-              <li>Segurança da Informação</li>
-              <li>Desenvolvimento de Sistemas Web</li>
-              <li>Estágio Supervisionado (200h)</li>
-            </ul>
+          <div class="course-card" onclick="showPage('cursos')">
+            <div class="course-card-header" style="background: linear-gradient(135deg, #5A0066, #A020C8)">
+              <span class="course-icon">🏥</span>
+              <div class="course-name">Enfermagem</div>
+              <div class="course-tag">Saúde</div>
+            </div>
+            <div class="course-card-body">
+              <p class="course-desc">Cuidados clínicos, primeiros socorros, anatomia e ética profissional. Prepare-se
+                para salvar vidas.</p>
+              <a class="course-link" onclick="showPage('cursos')">Ver detalhes →</a>
+            </div>
           </div>
-          <div class="course-info-panel">
-            <div class="info-item"><label>Duração</label><span>18 meses</span></div>
-            <div class="info-item"><label>Carga horária</label><span>1.200 horas</span></div>
-            <div class="info-item"><label>Turno</label><span>Manhã / Noite</span></div>
-            <div class="info-item"><label>Certificado</label><span>MEC Reconhecido</span></div>
-            <div class="info-item"><label>Mensalidade</label><span>R$ 549,90</span></div>
-            <button class="btn-primary" style="width:100%; justify-content:center; margin-top:1rem;" onclick="showPage('cadastro')">Quero me inscrever</button>
+          <div class="course-card" onclick="showPage('cursos')">
+            <div class="course-card-header" style="background: linear-gradient(135deg, #2D0066, #7810B8)">
+              <span class="course-icon">📊</span>
+              <div class="course-name">Administração</div>
+              <div class="course-tag">Negócios</div>
+            </div>
+            <div class="course-card-body">
+              <p class="course-desc">Gestão financeira, RH, marketing e empreendedorismo. Forme-se para liderar qualquer
+                negócio.</p>
+              <a class="course-link" onclick="showPage('cursos')">Ver detalhes →</a>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="course-detail">
-        <div class="course-detail-header" style="background: linear-gradient(135deg, #5A0066, #A020C8)">
-          <div class="course-detail-icon">🏥</div>
-          <div>
-            <h3>Técnico em Enfermagem</h3>
-            <p>Prepare-se para atuar na área da saúde com excelência. Aprenda procedimentos clínicos, ética e cuidados ao paciente com profissionais experientes.</p>
+    <!-- Projetos / Ferramentas -->
+    <section class="section section-dark">
+      <div class="container">
+        <div class="section-label" style="color: var(--purple-glow)">Ferramentas Interativas</div>
+        <h2>Explore, descubra, participe</h2>
+        <p class="section-lead">Recursos exclusivos para ajudar você a encontrar o curso certo e dar o primeiro passo.
+        </p>
+        <div class="projects-grid">
+          <div class="proj-card">
+            <div class="proj-number">01</div>
+            <span class="proj-icon">🎯</span>
+            <div class="proj-title">Quiz Vocacional</div>
+            <p class="proj-desc">Responda 15 perguntas e descubra qual curso técnico combina com seu perfil, habilidades
+              e sonhos.</p>
+            <button class="proj-btn" data-page="quiz">Fazer o Quiz</button>
           </div>
-        </div>
-        <div class="course-detail-body">
-          <div class="course-modules">
-            <h4>Módulos do Curso</h4>
-            <ul class="module-list">
-              <li>Anatomia e Fisiologia Humana</li>
-              <li>Fundamentos de Enfermagem</li>
-              <li>Primeiros Socorros e Urgência</li>
-              <li>Farmacologia e Medicamentos</li>
-              <li>Enfermagem Clínica e Cirúrgica</li>
-              <li>Saúde Materno-Infantil</li>
-              <li>Saúde do Idoso e Gerontologia</li>
-              <li>Biossegurança e Controle de Infecção</li>
-              <li>Ética e Legislação em Enfermagem</li>
-              <li>Estágio Hospitalar Supervisionado (400h)</li>
-            </ul>
+          <div class="proj-card">
+            <div class="proj-number">02</div>
+            <span class="proj-icon">🎰</span>
+            <div class="proj-title">Raspadinha da KNOW</div>
+            <p class="proj-desc">Tente a sorte e ganhe prêmios exclusivos: camiseta, descontos na matrícula e muito
+              mais.</p>
+            <button class="proj-btn" data-page="raspadinha">Raspar agora</button>
           </div>
-          <div class="course-info-panel">
-            <div class="info-item"><label>Duração</label><span>24 meses</span></div>
-            <div class="info-item"><label>Carga horária</label><span>1.600 horas</span></div>
-            <div class="info-item"><label>Turno</label><span>Manhã / Tarde</span></div>
-            <div class="info-item"><label>Certificado</label><span>MEC + COREN</span></div>
-            <div class="info-item"><label>Mensalidade</label><span>R$ 649,90</span></div>
-            <button class="btn-primary" style="width:100%; justify-content:center; margin-top:1rem;" onclick="showPage('cadastro')">Quero me inscrever</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="course-detail">
-        <div class="course-detail-header" style="background: linear-gradient(135deg, #2D0066, #7810B8)">
-          <div class="course-detail-icon">📊</div>
-          <div>
-            <h3>Técnico em Administração</h3>
-            <p>Desenvolva habilidades gerenciais, financeiras e de liderança. O curso ideal para quem quer empreender ou crescer dentro das organizações.</p>
-          </div>
-        </div>
-        <div class="course-detail-body">
-          <div class="course-modules">
-            <h4>Módulos do Curso</h4>
-            <ul class="module-list">
-              <li>Fundamentos de Administração</li>
-              <li>Contabilidade e Finanças Básicas</li>
-              <li>Gestão de Recursos Humanos</li>
-              <li>Marketing e Vendas</li>
-              <li>Logística e Supply Chain</li>
-              <li>Empreendedorismo e Inovação</li>
-              <li>Direito Empresarial</li>
-              <li>Excel Avançado e BI</li>
-              <li>Liderança e Gestão de Equipes</li>
-              <li>Estágio Empresarial (200h)</li>
-            </ul>
-          </div>
-          <div class="course-info-panel">
-            <div class="info-item"><label>Duração</label><span>18 meses</span></div>
-            <div class="info-item"><label>Carga horária</label><span>1.200 horas</span></div>
-            <div class="info-item"><label>Turno</label><span>Noite</span></div>
-            <div class="info-item"><label>Certificado</label><span>MEC Reconhecido</span></div>
-            <div class="info-item"><label>Mensalidade</label><span>R$ 499,90</span></div>
-            <button class="btn-primary" style="width:100%; justify-content:center; margin-top:1rem;" onclick="showPage('cadastro')">Quero me inscrever</button>
+          <div class="proj-card">
+            <div class="proj-number">03</div>
+            <span class="proj-icon">📋</span>
+            <div class="proj-title">Pré-cadastro</div>
+            <p class="proj-desc">Reserve sua vaga! Preencha seus dados e garanta seu lugar na próxima turma do KNOW.</p>
+            <button class="proj-btn" data-page="cadastro">Cadastrar-se</button>
           </div>
         </div>
       </div>
+    </section>
 
-    </div>
-  </section>
-
-</div>
-
-<!-- ===== QUIZ ===== -->
-<div id="page-quiz" class="page" style="background: var(--gray-100); min-height: 100vh;">
-  <div class="quiz-wrapper">
-    <div id="quiz-start" class="quiz-start-card">
-      <span class="quiz-start-icon">🎯</span>
-      <h2>Quiz Vocacional KNOW</h2>
-      <p>Descubra qual curso técnico combina com seu perfil! Responda 15 perguntas honestas e veja nossa recomendação personalizada para você.</p>
-      <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap;">
-        <div style="background: var(--purple-pale); padding: 12px 20px; border-radius: 8px; text-align:center;">
-          <strong style="font-family: var(--font-display); color: var(--purple-deep); display:block; font-size:1.3rem">15</strong>
-          <span style="font-size:0.78rem; color:var(--gray-500)">perguntas</span>
-        </div>
-        <div style="background: var(--purple-pale); padding: 12px 20px; border-radius: 8px; text-align:center;">
-          <strong style="font-family: var(--font-display); color: var(--purple-deep); display:block; font-size:1.3rem">~5min</strong>
-          <span style="font-size:0.78rem; color:var(--gray-500)">duração</span>
-        </div>
-        <div style="background: var(--purple-pale); padding: 12px 20px; border-radius: 8px; text-align:center;">
-          <strong style="font-family: var(--font-display); color: var(--purple-deep); display:block; font-size:1.3rem">3</strong>
-          <span style="font-size:0.78rem; color:var(--gray-500)">cursos analisados</span>
+    <!-- CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-banner">
+          <h2>Pronto para começar?</h2>
+          <p>As inscrições para as próximas turmas estão abertas. Garanta sua vaga e transforme seu futuro com o Colégio
+            Técnico KNOW.</p>
+          <button class="btn-primary" data-page="cadastro">Fazer minha inscrição →</button>
         </div>
       </div>
-      <button class="btn-primary" onclick="startQuiz()">Iniciar o Quiz →</button>
-    </div>
+    </section>
 
-    <div id="quiz-questions" style="display:none;">
-      <div style="margin-bottom: 1.5rem;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
-          <span style="font-family:var(--font-display); font-weight:600; font-size:0.9rem; color:var(--purple-deep)" id="batchLabel">Perguntas 1–5</span>
-          <span class="progress-text" id="progressText">0 de 15</span>
-        </div>
-        <div class="progress-bar-wrap">
-          <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
-        </div>
-      </div>
-      <div class="questions-batch" id="questionsBatch"></div>
-      <div class="quiz-nav" id="quizNav">
-        <button class="btn-secondary" onclick="prevBatch()" id="prevBtn" style="display:none">← Anterior</button>
-        <button class="btn-primary" onclick="nextBatch()" id="nextBtn">Próximas perguntas →</button>
-      </div>
-    </div>
-
-    <div id="quiz-result" class="quiz-result" style="display:none;"></div>
-  </div>
-</div>
-
-<!-- ===== RASPADINHA ===== -->
-<div id="page-raspadinha" class="page" style="background: linear-gradient(160deg, #1A0A2E 0%, #3D0066 50%, #1A0A2E 100%); min-height: 100vh;">
-  <div class="lottery-wrapper">
-
-    <!-- Header -->
-    <div class="lottery-header">
-      <div class="lottery-header-badge">✦ RASPADINHA OFICIAL ✦</div>
-      <h2 style="color:#fff; margin-bottom:0.5rem;">KNOW</h2>
-      <p style="color:var(--gray-300); font-size:0.95rem;">Raspe as 9 células e junte <strong style="color:var(--accent-lime)">3 símbolos iguais</strong> para ganhar!</p>
-      <div class="lottery-attempts-row">
-        <span style="color:var(--gray-300); font-size:0.82rem;">Tentativas:</span>
-        <div class="attempts-dots" id="attemptsDots"></div>
-      </div>
-    </div>
-
-    <!-- Lottery Ticket -->
-    <div id="scratchArea">
-      <div class="lottery-ticket" id="lotteryTicket">
-
-        <!-- Ticket header strip -->
-        <div class="ticket-top-strip">
-          <div class="ticket-brand">🎰 KNOW</div>
-          <div class="ticket-serial" id="ticketSerial">Nº 000000</div>
-          <div class="ticket-prize-hint" id="ticketPrizeHint">PRÊMIO MÁXIMO: BOLSA 50%</div>
-        </div>
-
-        <!-- Scratch Grid -->
-        <div class="ticket-body">
-          <div class="ticket-instruction">↓ RASPE AS ÁREAS ABAIXO ↓</div>
-          <div class="scratch-grid" id="scratchGrid">
-            <!-- 9 cells generated by JS -->
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <div class="logo-mark">K</div>
+            <div class="logo-text">KNOW<span>.</span></div>
           </div>
-          <div class="ticket-match-hint">Combine 3 iguais na linha, coluna ou diagonal e ganhe!</div>
+          <p>Formando profissionais técnicos de excelência desde 2009. Educação que transforma vidas e carreiras.</p>
         </div>
-
-        <!-- Prize Legend -->
-        <div class="ticket-legend">
-          <div class="legend-title">TABELA DE PRÊMIOS</div>
-          <div class="legend-items" id="legendItems"></div>
+        <div class="footer-col">
+          <h5>Navegação</h5>
+          <ul>
+            <li><a onclick="showPage('home')">Início</a></li>
+            <li><a onclick="showPage('sobre')">Sobre</a></li>
+            <li><a onclick="showPage('cursos')">Cursos</a></li>
+            <li><a onclick="showPage('cadastro')">Inscrição</a></li>
+          </ul>
         </div>
-
-        <!-- Ticket bottom strip -->
-        <div class="ticket-bottom-strip">
-          <span>★ BOA SORTE ★</span>
-          <span>Colégio Técnico KNOW © 2025</span>
-          <span>★ BOA SORTE ★</span>
+        <div class="footer-col">
+          <h5>Cursos</h5>
+          <ul>
+            <li><a onclick="showPage('cursos')">Informática</a></li>
+            <li><a onclick="showPage('cursos')">Enfermagem</a></li>
+            <li><a onclick="showPage('cursos')">Administração</a></li>
+          </ul>
         </div>
-
-        <!-- Confetti overlay -->
-        <div class="ticket-confetti" id="ticketConfetti" style="display:none;"></div>
+        <div class="footer-col">
+          <h5>Contato</h5>
+          <ul>
+            <li><span>📍 Rua das Acácias, 480</span></li>
+            <li><span>📞 (51) 3344-5566</span></li>
+            <li><span>✉️ contato@knowtecnico.edu.br</span></li>
+          </ul>
+        </div>
       </div>
-    </div>
-
-    <!-- Result message -->
-    <div class="lottery-result" id="lotteryResult" style="display:none;">
-      <div class="lottery-result-inner">
-        <div class="lottery-result-icon" id="lotteryResultIcon">🎉</div>
-        <div class="lottery-result-title" id="lotteryResultTitle">Parabéns!</div>
-        <div class="lottery-result-msg" id="lotteryResultMsg"></div>
+      <div class="footer-bottom">
+        <span>© 2024 Colégio Técnico <span>KNOW.</span> Todos os direitos reservados.</span>
+        <span>Educação que transforma 🚀</span>
       </div>
-    </div>
-
-    <!-- Buttons -->
-    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:1.5rem;">
-      <button class="btn-primary" id="newScratchBtn" onclick="newScratch()" style="display:none;">🎟️ Nova Raspadinha</button>
-      <button class="btn-secondary" onclick="showPage('cadastro')" id="scratchCadBtn" style="display:none; border-color:var(--accent-lime); color:var(--accent-lime);">📋 Garantir minha vaga</button>
-    </div>
-
-    <!-- No attempts left -->
-    <div id="noAttemptsMsg" style="display:none; margin-top:2rem; text-align:center; padding:2.5rem; background:rgba(255,255,255,0.06); border:1px solid rgba(182,110,240,0.3); border-radius:var(--radius-lg);">
-      <span style="font-size:3rem; display:block; margin-bottom:1rem">🎯</span>
-      <strong style="font-family:var(--font-display); color:var(--white); display:block; margin-bottom:0.5rem; font-size:1.3rem;">Suas tentativas acabaram!</strong>
-      <p style="font-size:0.88rem; color:var(--gray-300); margin-bottom:1.5rem; max-width:340px; margin-left:auto; margin-right:auto;">Não perca os prêmios que você ganhou. Faça seu cadastro e garanta os benefícios!</p>
-      <button class="btn-primary" onclick="showPage('cadastro')">Fazer cadastro agora →</button>
-    </div>
+    </footer>
 
   </div>
-</div>
 
-<!-- ===== CADASTRO ===== -->
-<div id="page-cadastro" class="page" style="background: var(--gray-100); min-height: 100vh;">
-  <div class="register-wrapper" style="max-width: 900px;">
+  <!-- ===== SOBRE ===== -->
+  <div id="page-sobre" class="page">
 
-    <div style="margin-bottom: 2rem; padding-top:1rem;">
-      <div class="section-label">Pré-matrícula</div>
-      <h2 style="color: var(--purple-deep)">Reserve sua vaga</h2>
-      <p style="color: var(--gray-500); line-height: 1.6; margin-top:0.5rem">Preencha o formulário abaixo para garantir sua vaga na próxima turma. Nossa equipe entrará em contato em até 24 horas.</p>
-    </div>
+    <section class="section"
+      style="background: linear-gradient(135deg, var(--dark), var(--purple-deep)); min-height: 320px; display:flex; align-items:center;">
+      <div class="container">
+        <div class="section-label" style="color: var(--purple-glow)">Nossa história</div>
+        <h2 style="color: var(--white); max-width: 640px;">15 anos transformando jovens em profissionais</h2>
+        <p style="color: var(--gray-300); max-width: 520px; line-height: 1.7; font-weight: 300; margin-top: 1rem;">O
+          Colégio Técnico KNOW nasceu da crença de que a educação técnica de qualidade é o caminho mais direto para o
+          crescimento profissional e social.</p>
+      </div>
+    </section>
 
-    <div class="register-card">
-      <h3>Dados do Candidato</h3>
-      <p>Todos os campos marcados com * são obrigatórios.</p>
-
-      <div class="form-grid">
-        <div class="form-group full" id="fg-nome">
-          <label>Nome completo *</label>
-          <input type="text" id="f-nome" placeholder="Seu nome completo">
-          <span class="error-msg">Por favor, informe seu nome completo (mínimo 3 caracteres).</span>
-        </div>
-        <div class="form-group" id="fg-idade">
-          <label>Idade *</label>
-          <input type="number" id="f-idade" placeholder="Ex: 17" min="14" max="80">
-          <span class="error-msg">Informe uma idade válida (14–80 anos).</span>
-        </div>
-        <div class="form-group" id="fg-email">
-          <label>E-mail *</label>
-          <input type="email" id="f-email" placeholder="seu@email.com">
-          <span class="error-msg">Informe um e-mail válido.</span>
-        </div>
-        <div class="form-group full" id="fg-curso">
-          <label>Curso de interesse *</label>
-          <select id="f-curso">
-            <option value="">Selecione o curso desejado</option>
-            <option value="Informática">Técnico em Informática</option>
-            <option value="Enfermagem">Técnico em Enfermagem</option>
-            <option value="Administração">Técnico em Administração</option>
-          </select>
-          <span class="error-msg">Selecione um curso de interesse.</span>
+    <section class="section">
+      <div class="container">
+        <div class="about-intro">
+          <div>
+            <div class="section-label">Linha do Tempo</div>
+            <h2>Como chegamos até aqui</h2>
+            <div class="timeline mt-2">
+              <div class="timeline-item">
+                <div class="timeline-year">2009</div>
+                <h4>Fundação do KNOW</h4>
+                <p>Inauguração com o curso de Informática e 40 alunos na primeira turma. Uma semente plantada na
+                  educação técnica regional.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">2012</div>
+                <h4>Expansão para Saúde</h4>
+                <p>Abertura do curso técnico em Enfermagem, atendendo à crescente demanda por profissionais de saúde na
+                  região.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">2015</div>
+                <h4>Curso de Administração</h4>
+                <p>Completando a tríade formativa, o curso de Administração abriu portas para empreendedores e gestores
+                  em formação.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">2018</div>
+                <h4>Acreditação MEC 5 Estrelas</h4>
+                <p>Reconhecimento nacional pela excelência em ensino técnico, infraestrutura e taxa de empregabilidade
+                  de egressos.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">2024</div>
+                <h4>+2.400 formados</h4>
+                <p>Mais de dois mil e quatrocentos profissionais no mercado, atuando em empresas de referência em todo o
+                  Brasil.</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="mission-vision">
+              <div class="mv-card">
+                <h3>🎯 Missão</h3>
+                <p>Oferecer educação técnica de excelência, formando profissionais éticos, competentes e preparados para
+                  os desafios do mercado de trabalho moderno.</p>
+              </div>
+              <div class="mv-card">
+                <h3>🔭 Visão</h3>
+                <p>Ser referência nacional em educação técnica, reconhecida pela qualidade do ensino, inovação
+                  pedagógica e impacto positivo na vida dos alunos.</p>
+              </div>
+            </div>
+            <div style="margin-top: 2rem; background: var(--gray-100); border-radius: var(--radius); padding: 2rem;">
+              <div class="section-label" style="margin-bottom: 1rem">Em números</div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <div>
+                  <div
+                    style="font-family:var(--font-display); font-size:2rem; font-weight:700; color:var(--purple-main)">
+                    2.400+</div>
+                  <div style="font-size:0.82rem; color:var(--gray-500)">Alunos formados</div>
+                </div>
+                <div>
+                  <div
+                    style="font-family:var(--font-display); font-size:2rem; font-weight:700; color:var(--purple-main)">
+                    94%</div>
+                  <div style="font-size:0.82rem; color:var(--gray-500)">Empregabilidade</div>
+                </div>
+                <div>
+                  <div
+                    style="font-family:var(--font-display); font-size:2rem; font-weight:700; color:var(--purple-main)">
+                    45</div>
+                  <div style="font-size:0.82rem; color:var(--gray-500)">Professores especializados</div>
+                </div>
+                <div>
+                  <div
+                    style="font-family:var(--font-display); font-size:2rem; font-weight:700; color:var(--purple-main)">
+                    12</div>
+                  <div style="font-size:0.82rem; color:var(--gray-500)">Laboratórios equipados</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="form-footer">
-        <button class="btn-primary" onclick="submitForm()">Enviar cadastro →</button>
-        <div class="form-success" id="formSuccess">
-          <span>✅</span> Cadastro realizado com sucesso!
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-label">Valores</div>
+        <h2>O que nos guia</h2>
+        <p class="section-lead">Mais do que uma instituição de ensino, somos uma comunidade comprometida com valores que
+          fazem a diferença.</p>
+        <div class="values-grid">
+          <div class="value-card">
+            <span class="value-icon">🎓</span>
+            <h4>Excelência</h4>
+            <p>Buscamos o mais alto padrão de qualidade em tudo que fazemos: no ensino, na infraestrutura e no
+              atendimento ao aluno.</p>
+          </div>
+          <div class="value-card">
+            <span class="value-icon">🤝</span>
+            <h4>Inclusão</h4>
+            <p>Acreditamos que a educação técnica de qualidade deve ser acessível a todos, independente de origem ou
+              condição social.</p>
+          </div>
+          <div class="value-card">
+            <span class="value-icon">💡</span>
+            <h4>Inovação</h4>
+            <p>Acompanhamos as transformações do mercado e atualizamos continuamente nossos currículos e metodologias.
+            </p>
+          </div>
+          <div class="value-card">
+            <span class="value-icon">🌱</span>
+            <h4>Desenvolvimento</h4>
+            <p>Não formamos apenas técnicos: desenvolvemos pessoas completas, com pensamento crítico e visão de futuro.
+            </p>
+          </div>
+          <div class="value-card">
+            <span class="value-icon">🔗</span>
+            <h4>Parceria</h4>
+            <p>Construímos pontes entre alunos e empresas, facilitando o acesso ao primeiro emprego e às melhores
+              oportunidades.</p>
+          </div>
+          <div class="value-card">
+            <span class="value-icon">⚖️</span>
+            <h4>Ética</h4>
+            <p>A conduta ética e a responsabilidade profissional são pilares fundamentais de todos os nossos cursos e
+              relações.</p>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="register-card students-panel">
-      <div class="panel-header">
-        <h3>Candidatos Cadastrados</h3>
-        <span class="panel-count" id="studentsCount">0 cadastros</span>
+    <section class="section">
+      <div class="container">
+        <div class="cta-banner">
+          <h2>Faça parte dessa história</h2>
+          <p>Junte-se a mais de 2.400 profissionais que já transformaram suas vidas com o Colégio Técnico KNOW.</p>
+          <button class="btn-primary" data-page="cadastro">Quero me inscrever →</button>
+        </div>
       </div>
-      <div id="studentsTableWrap"></div>
-    </div>
+    </section>
 
   </div>
-</div>
 
-<!-- Toast -->
-<div class="toast" id="toast"></div>
+  <!-- ===== CURSOS ===== -->
+  <div id="page-cursos" class="page">
 
-<script src="script.js"></script>
+    <section class="section"
+      style="background: linear-gradient(135deg, var(--dark), var(--purple-deep)); min-height: 260px; display:flex; align-items:center; padding-bottom: 3rem;">
+      <div class="container">
+        <div class="section-label" style="color: var(--purple-glow)">Formação Técnica</div>
+        <h2 style="color: var(--white);">Nossos cursos</h2>
+        <p style="color: var(--gray-300); font-weight:300; line-height:1.7; max-width:540px; margin-top: 1rem;">Escolha
+          sua área e dê o primeiro passo rumo a uma carreira sólida, bem remunerada e cheia de oportunidades.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+
+        <div class="course-detail">
+          <div class="course-detail-header">
+            <div class="course-detail-icon">💻</div>
+            <div>
+              <h3>Técnico em Informática</h3>
+              <p>Domine as tecnologias que movem o mundo. De redes a programação, você estará preparado para atuar em
+                qualquer área do setor de TI.</p>
+            </div>
+          </div>
+          <div class="course-detail-body">
+            <div class="course-modules">
+              <h4>Módulos do Curso</h4>
+              <ul class="module-list">
+                <li>Introdução à Lógica de Programação</li>
+                <li>Algoritmos e Estrutura de Dados</li>
+                <li>HTML, CSS e JavaScript</li>
+                <li>Banco de Dados e SQL</li>
+                <li>Redes de Computadores</li>
+                <li>Sistemas Operacionais (Windows e Linux)</li>
+                <li>Manutenção de Hardware e Software</li>
+                <li>Segurança da Informação</li>
+                <li>Desenvolvimento de Sistemas Web</li>
+                <li>Estágio Supervisionado (200h)</li>
+              </ul>
+            </div>
+            <div class="course-info-panel">
+              <div class="info-item"><label>Duração</label><span>18 meses</span></div>
+              <div class="info-item"><label>Carga horária</label><span>1.200 horas</span></div>
+              <div class="info-item"><label>Turno</label><span>Manhã / Noite</span></div>
+              <div class="info-item"><label>Certificado</label><span>MEC Reconhecido</span></div>
+              <div class="info-item"><label>Mensalidade</label><span>R$ 549,90</span></div>
+              <button class="btn-primary" style="width:100%; justify-content:center; margin-top:1rem;"
+                data-page="cadastro">Quero me inscrever</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-detail">
+          <div class="course-detail-header" style="background: linear-gradient(135deg, #5A0066, #A020C8)">
+            <div class="course-detail-icon">🏥</div>
+            <div>
+              <h3>Técnico em Enfermagem</h3>
+              <p>Prepare-se para atuar na área da saúde com excelência. Aprenda procedimentos clínicos, ética e cuidados
+                ao paciente com profissionais experientes.</p>
+            </div>
+          </div>
+          <div class="course-detail-body">
+            <div class="course-modules">
+              <h4>Módulos do Curso</h4>
+              <ul class="module-list">
+                <li>Anatomia e Fisiologia Humana</li>
+                <li>Fundamentos de Enfermagem</li>
+                <li>Primeiros Socorros e Urgência</li>
+                <li>Farmacologia e Medicamentos</li>
+                <li>Enfermagem Clínica e Cirúrgica</li>
+                <li>Saúde Materno-Infantil</li>
+                <li>Saúde do Idoso e Gerontologia</li>
+                <li>Biossegurança e Controle de Infecção</li>
+                <li>Ética e Legislação em Enfermagem</li>
+                <li>Estágio Hospitalar Supervisionado (400h)</li>
+              </ul>
+            </div>
+            <div class="course-info-panel">
+              <div class="info-item"><label>Duração</label><span>24 meses</span></div>
+              <div class="info-item"><label>Carga horária</label><span>1.600 horas</span></div>
+              <div class="info-item"><label>Turno</label><span>Manhã / Tarde</span></div>
+              <div class="info-item"><label>Certificado</label><span>MEC + COREN</span></div>
+              <div class="info-item"><label>Mensalidade</label><span>R$ 649,90</span></div>
+              <button class="btn-primary" style="width:100%; justify-content:center; margin-top:1rem;"
+                data-page="cadastro">Quero me inscrever</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-detail">
+          <div class="course-detail-header" style="background: linear-gradient(135deg, #2D0066, #7810B8)">
+            <div class="course-detail-icon">📊</div>
+            <div>
+              <h3>Técnico em Administração</h3>
+              <p>Desenvolva habilidades gerenciais, financeiras e de liderança. O curso ideal para quem quer empreender
+                ou crescer dentro das organizações.</p>
+            </div>
+          </div>
+          <div class="course-detail-body">
+            <div class="course-modules">
+              <h4>Módulos do Curso</h4>
+              <ul class="module-list">
+                <li>Fundamentos de Administração</li>
+                <li>Contabilidade e Finanças Básicas</li>
+                <li>Gestão de Recursos Humanos</li>
+                <li>Marketing e Vendas</li>
+                <li>Logística e Supply Chain</li>
+                <li>Empreendedorismo e Inovação</li>
+                <li>Direito Empresarial</li>
+                <li>Excel Avançado e BI</li>
+                <li>Liderança e Gestão de Equipes</li>
+                <li>Estágio Empresarial (200h)</li>
+              </ul>
+            </div>
+            <div class="course-info-panel">
+              <div class="info-item"><label>Duração</label><span>18 meses</span></div>
+              <div class="info-item"><label>Carga horária</label><span>1.200 horas</span></div>
+              <div class="info-item"><label>Turno</label><span>Noite</span></div>
+              <div class="info-item"><label>Certificado</label><span>MEC Reconhecido</span></div>
+              <div class="info-item"><label>Mensalidade</label><span>R$ 499,90</span></div>
+              <button class="btn-primary" style="width:100%; justify-content:center; margin-top:1rem;"
+                data-page="cadastro">Quero me inscrever</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ===== QUIZ ===== -->
+  <div id="page-quiz" class="page" style="background: var(--gray-100); min-height: 100vh;">
+    <div class="quiz-wrapper">
+      <div id="quiz-start" class="quiz-start-card">
+        <span class="quiz-start-icon">🎯</span>
+        <h2>Quiz Vocacional KNOW</h2>
+        <p>Descubra qual curso técnico combina com seu perfil! Responda 15 perguntas honestas e veja nossa recomendação
+          personalizada para você.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap;">
+          <div style="background: var(--purple-pale); padding: 12px 20px; border-radius: 8px; text-align:center;">
+            <strong
+              style="font-family: var(--font-display); color: var(--purple-deep); display:block; font-size:1.3rem">15</strong>
+            <span style="font-size:0.78rem; color:var(--gray-500)">perguntas</span>
+          </div>
+          <div style="background: var(--purple-pale); padding: 12px 20px; border-radius: 8px; text-align:center;">
+            <strong
+              style="font-family: var(--font-display); color: var(--purple-deep); display:block; font-size:1.3rem">~5min</strong>
+            <span style="font-size:0.78rem; color:var(--gray-500)">duração</span>
+          </div>
+          <div style="background: var(--purple-pale); padding: 12px 20px; border-radius: 8px; text-align:center;">
+            <strong
+              style="font-family: var(--font-display); color: var(--purple-deep); display:block; font-size:1.3rem">3</strong>
+            <span style="font-size:0.78rem; color:var(--gray-500)">cursos analisados</span>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="startQuiz()">Iniciar o Quiz →</button>
+      </div>
+
+      <div id="quiz-questions" style="display:none;">
+        <div style="margin-bottom: 1.5rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+            <span style="font-family:var(--font-display); font-weight:600; font-size:0.9rem; color:var(--purple-deep)"
+              id="batchLabel">Perguntas 1–5</span>
+            <span class="progress-text" id="progressText">0 de 15</span>
+          </div>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
+          </div>
+        </div>
+        <div class="questions-batch" id="questionsBatch"></div>
+        <div class="quiz-nav" id="quizNav">
+          <button class="btn-secondary" onclick="prevBatch()" id="prevBtn" style="display:none">← Anterior</button>
+          <button class="btn-primary" onclick="nextBatch()" id="nextBtn">Próximas perguntas →</button>
+        </div>
+      </div>
+
+      <div id="quiz-result" class="quiz-result" style="display:none;"></div>
+    </div>
+  </div>
+
+  <!-- ===== RASPADINHA ===== -->
+  <div id="page-raspadinha" class="page"
+    style="background: linear-gradient(160deg, #1A0A2E 0%, #3D0066 50%, #1A0A2E 100%); min-height: 100vh;">
+    <div class="lottery-wrapper">
+
+      <!-- Header -->
+      <div class="lottery-header">
+        <div class="lottery-header-badge">✦ RASPADINHA OFICIAL ✦</div>
+        <h2 style="color:#fff; margin-bottom:0.5rem;">KNOW</h2>
+        <p style="color:var(--gray-300); font-size:0.95rem;">Raspe as 9 células e junte <strong
+            style="color:var(--accent-lime)">3 símbolos iguais</strong> para ganhar!</p>
+        <div class="lottery-attempts-row">
+          <span style="color:var(--gray-300); font-size:0.82rem;">Tentativas:</span>
+          <div class="attempts-dots" id="attemptsDots"></div>
+        </div>
+      </div>
+
+      <!-- Lottery Ticket -->
+      <div id="scratchArea">
+        <div class="lottery-ticket" id="lotteryTicket">
+
+          <!-- Ticket header strip -->
+          <div class="ticket-top-strip">
+            <div class="ticket-brand">🎰 KNOW</div>
+            <div class="ticket-serial" id="ticketSerial">Nº 000000</div>
+            <div class="ticket-prize-hint" id="ticketPrizeHint">PRÊMIO MÁXIMO: BOLSA 50%</div>
+          </div>
+
+          <!-- Scratch Grid -->
+          <div class="ticket-body">
+            <div class="ticket-instruction">↓ RASPE AS ÁREAS ABAIXO ↓</div>
+            <div class="scratch-grid" id="scratchGrid">
+              <!-- 9 cells generated by JS -->
+            </div>
+            <div class="ticket-match-hint">Combine 3 iguais na linha, coluna ou diagonal e ganhe!</div>
+          </div>
+
+          <!-- Prize Legend -->
+          <div class="ticket-legend">
+            <div class="legend-title">TABELA DE PRÊMIOS</div>
+            <div class="legend-items" id="legendItems"></div>
+          </div>
+
+          <!-- Ticket bottom strip -->
+          <div class="ticket-bottom-strip">
+            <span>★ BOA SORTE ★</span>
+            <span>Colégio Técnico KNOW © 2025</span>
+            <span>★ BOA SORTE ★</span>
+          </div>
+
+          <!-- Confetti overlay -->
+          <div class="ticket-confetti" id="ticketConfetti" style="display:none;"></div>
+        </div>
+      </div>
+
+      <!-- Result message -->
+      <div class="lottery-result" id="lotteryResult" style="display:none;">
+        <div class="lottery-result-inner">
+          <div class="lottery-result-icon" id="lotteryResultIcon">🎉</div>
+          <div class="lottery-result-title" id="lotteryResultTitle">Parabéns!</div>
+          <div class="lottery-result-msg" id="lotteryResultMsg"></div>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:1.5rem;">
+        <button class="btn-primary" id="newScratchBtn" onclick="newScratch()" style="display:none;">🎟️ Nova
+          Raspadinha</button>
+        <button class="btn-secondary" data-page="cadastro" id="scratchCadBtn"
+          style="display:none; border-color:var(--accent-lime); color:var(--accent-lime);">📋 Garantir minha
+          vaga</button>
+      </div>
+
+      <!-- No attempts left -->
+      <div id="noAttemptsMsg"
+        style="display:none; margin-top:2rem; text-align:center; padding:2.5rem; background:rgba(255,255,255,0.06); border:1px solid rgba(182,110,240,0.3); border-radius:var(--radius-lg);">
+        <span style="font-size:3rem; display:block; margin-bottom:1rem">🎯</span>
+        <strong
+          style="font-family:var(--font-display); color:var(--white); display:block; margin-bottom:0.5rem; font-size:1.3rem;">Suas
+          tentativas acabaram!</strong>
+        <p
+          style="font-size:0.88rem; color:var(--gray-300); margin-bottom:1.5rem; max-width:340px; margin-left:auto; margin-right:auto;">
+          Não perca os prêmios que você ganhou. Faça seu cadastro e garanta os benefícios!</p>
+        <button class="btn-primary" data-page="cadastro">Fazer cadastro agora →</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== CADASTRO ===== -->
+  <div id="page-cadastro" class="page" style="background: var(--gray-100); min-height: 100vh;">
+    <div class="register-wrapper" style="max-width: 900px;">
+
+      <div style="margin-bottom: 2rem; padding-top:1rem;">
+        <div class="section-label">Pré-matrícula</div>
+        <h2 style="color: var(--purple-deep)">Reserve sua vaga</h2>
+        <p style="color: var(--gray-500); line-height: 1.6; margin-top:0.5rem">Preencha o formulário abaixo para
+          garantir sua vaga na próxima turma. Nossa equipe entrará em contato em até 24 horas.</p>
+      </div>
+
+      <div class="register-card">
+        <h3>Dados do Candidato</h3>
+        <p>Todos os campos marcados com * são obrigatórios.</p>
+
+        <div class="form-grid">
+          <div class="form-group full" id="fg-nome">
+            <label>Nome completo *</label>
+            <input type="text" id="f-nome" placeholder="Seu nome completo">
+            <span class="error-msg">Por favor, informe seu nome completo (mínimo 3 caracteres).</span>
+          </div>
+          <div class="form-group" id="fg-idade">
+            <label>Idade *</label>
+            <input type="number" id="f-idade" placeholder="Ex: 17" min="14" max="80">
+            <span class="error-msg">Informe uma idade válida (14–80 anos).</span>
+          </div>
+          <div class="form-group" id="fg-email">
+            <label>E-mail *</label>
+            <input type="email" id="f-email" placeholder="seu@email.com">
+            <span class="error-msg">Informe um e-mail válido.</span>
+          </div>
+          <div class="form-group full" id="fg-curso">
+            <label>Curso de interesse *</label>
+            <select id="f-curso">
+              <option value="">Selecione o curso desejado</option>
+              <option value="Informática">Técnico em Informática</option>
+              <option value="Enfermagem">Técnico em Enfermagem</option>
+              <option value="Administração">Técnico em Administração</option>
+            </select>
+            <span class="error-msg">Selecione um curso de interesse.</span>
+          </div>
+        </div>
+
+        <div class="form-footer">
+          <button class="btn-primary" onclick="submitForm()">Enviar cadastro →</button>
+          <div class="form-success" id="formSuccess">
+            <span>✅</span> Cadastro realizado com sucesso!
+          </div>
+        </div>
+      </div>
+
+      <div class="register-card students-panel">
+        <div class="panel-header">
+          <h3>Candidatos Cadastrados</h3>
+          <span class="panel-count" id="studentsCount">0 cadastros</span>
+        </div>
+        <div id="studentsTableWrap"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
 </body>
+
 </html>

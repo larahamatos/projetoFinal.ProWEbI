@@ -1,8 +1,15 @@
 // ===== NAV =====
 function showPage(id) {
+    const pageEl = document.getElementById('page-' + id);
+    if (!pageEl) {
+        console.warn(`showPage: page '${id}' not found.`);
+        return;
+    }
+
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-    document.getElementById('page-' + id).classList.add('active');
+    pageEl.classList.add('active');
+
     const navEl = document.getElementById('nav-' + id);
     if (navEl) navEl.classList.add('active');
     window.scrollTo(0, 0);
@@ -10,6 +17,15 @@ function showPage(id) {
     if (id === 'raspadinha') initScratch();
     if (id === 'cadastro') renderStudentsTable();
 }
+
+document.addEventListener('click', event => {
+    const target = event.target.closest('[data-page]');
+    if (!target) return;
+    const page = target.dataset.page;
+    if (!page) return;
+    event.preventDefault();
+    showPage(page);
+});
 
 function showToast(msg, dur = 3000) {
     const t = document.getElementById('toast');
